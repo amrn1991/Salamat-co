@@ -13,10 +13,12 @@ export default function poetry(verse) {
     "همچو موسی بودن از نور تجلی تابناک گفتگوها با خدا در کوه و هامون داشتن",
   ];
 
+  // taking the last letters of a verse and a division
   let trimmed = verse.trim();
   let lastLet = trimmed.slice(-1);
   let lastDiv = trimmed.split(" ")[0].slice(-1);
 
+  // check to see if the last letter has an alternative
   if (lastLet === "ء" || lastLet === "آ") {
     lastLet = "ا";
   }
@@ -24,12 +26,15 @@ export default function poetry(verse) {
     lastDiv = "ا";
   }
 
+  // first we look for the last letter of the verse
   let response = data.find((x) => x.startsWith(lastLet));
 
+  // if undefined, we look for the last letter of the division
   if (response === undefined) {
     response = data.find((x) => x.startsWith(lastDiv));
   }
 
+  // if it's still undefined, we return null
   response === undefined ? (response = null) : response;
 
   return response;
